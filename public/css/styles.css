@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.sms-form {
+  max-width: 35rem;
+}
+
+.sms-form label, .sms-form input, .sms-form textarea  {
+  display: block;
+  width: 100%;
+}
+
+.sms-form label {
+  font-weight: bold;
+}
+
+.sms-form textarea {
+  resize: vertical;
+}
+
+.flash-notice {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.flash-success {
+  background-color: rgb(104, 218, 161);
+
+}
+
+.flash-error {
+  background-color: rgb(242, 88, 88);
+}
