@@ -18,7 +18,12 @@
         <textarea name="message" rows="8" cols="80"></textarea>
         <input type="submit" value="Send Message">
       </form>
-    </article>
 
+      <% if @status_message %>
+          <div class="flash-notice <%= @status_message[:class] %>">
+            <%= @status_message[:text] %>
+          </div>
+      <% end %>
+    </article>
   </body>
 </html>

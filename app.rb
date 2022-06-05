@@ -6,9 +6,6 @@ require 'tilt/erubis'
 require 'vonage'
 require 'dotenv/load'
 
-VONAGE_API_KEY = ENV['VONAGE_API_KEY']
-VONAGE_API_SECRET = ENV['VONAGE_API_SECRET']
-
 get '/' do
   redirect '/sms'
 end
@@ -20,9 +17,14 @@ end
 post '/sms' do
   to_number = params[:number]
   message = params[:message]
-  client = Vonage::Client.new(api_key: VONAGE_API_KEY, api_secret: VONAGE_API_SECRET)
+  client = Vonage::Client.new(api_key: ENV['VONAGE_API_KEY'], api_secret: ENV['VONAGE_API_SECRET'])
 
-  client.sms.send(from: 'Vonage', to: to_number, text: message)
+  begin
+    response = client.sms.send(from: 'Vonage', to: to_number, text: message)
+    @status_message = { class: "flash-success", text: "Message sent successfully." }
+  rescue Vonage::ServiceError => e
+    @status_message = { class: "flash-error", text: "Message failed with error: #{e.response[:messages][0][:error_text]}"}
+  end
 
   erb :sms
 end

@@ -6,6 +6,6 @@ gem "erubis"
 gem "dotenv"
 gem "vonage"
 
-# group :production do
-#   gem "puma", "~>3.7.0"
-# end
+group :production do
+  gem "puma"
+end
